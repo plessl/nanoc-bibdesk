@@ -18,5 +18,14 @@ class TestTextHelpers < Test::Unit::TestCase
     assert_equal('C. Plessl, M. Grad and M. Platzner', a.joined_by_comma_and_and)
   end
 
+  def test_detex_endash
+    i = "--"
+    o = "–"
+  end
+  
+  def test_detex_emdash
+    
+  end
+  
   
 end

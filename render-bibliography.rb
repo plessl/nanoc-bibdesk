@@ -1,6 +1,9 @@
 require 'text-helpers'
 
 
+# TODO
+# * print "page" instead of "pages" for publications that have only a single page
+
 def booktitle(p)
   return p.fields.find {|f| f.name == "Booktitle"}.value
 end
@@ -44,12 +47,12 @@ def render_inproceedings(p)
     r += ", pages " + field(p,"Pages").detex + ". "
   end
 
-  if field(p,"Organization") then
-    r += field(p,"Organization").detex + ", "
+  if field(p,"Address") then
+    r += field(p,"Address").detex + ", "
   end
 
-  if field(p,"Publisher") then
-    r += field(p,"Publisher").detex + ", "
+  if field(p,"Organization") then
+    r += field(p,"Organization").detex + ", "
   end
 
   if field(p,"Month") then
@@ -58,6 +61,10 @@ def render_inproceedings(p)
 
   if field(p,"Year") then
     r += field(p,"Year").detex + ". "
+  end
+
+  if field(p,"Publisher") then
+    r += field(p,"Publisher").detex + ". "
   end
 
   if field(p,"Note") then

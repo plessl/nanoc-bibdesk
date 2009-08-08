@@ -15,6 +15,10 @@ end
 class String
   
   def detex
+    self.gsub!(/\{/,"")      # remove all {
+    self.gsub!(/\}/,"")      # remove all }
+    self.gsub!(/---/,"—")    # em dash --- \u2014
+    self.gsub!(/--/,"–")     # en dash -- \u2013
     return self
   end
 
