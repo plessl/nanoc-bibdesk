@@ -19,6 +19,18 @@ def field(p,field_name)
   end
 end
 
+
+def text_for_field(fieldname, p, params)
+  prefix = params[:prefix]
+  postfix = params[:postfix]
+  
+  if field(p,fieldname) then
+    return prefix + field(p,fieldname) + postfix
+  else
+    return ""
+  end
+end
+
 def render_inproceedings(p)
   r = ""
   r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
@@ -29,23 +41,25 @@ def render_inproceedings(p)
     r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editors, "
   end
 
-  r += field(p,"Booktitle").detex
+  r += field(p,"Booktitle").detex + ", "
 
   if field(p,"Volume") then
-    r += ", volume " + field(p,"Volume")
+    r += ", volume " + field(p,"Volume") + " "
   end
 
   if field(p,"Number") then
-    r += ", number " + field(p,"Number")
+    r += ", number " + field(p,"Number") + " "
   end
 
   if field(p,"Series") then
-    r += " of " + field(p,"Series").detex
+    r += "of " + field(p,"Series").detex + ", "
   end
 
-  if field(p,"Pages") then
-    r += ", pages " + field(p,"Pages").detex + ". "
-  end
+  r += text_for_field("Pages", p, :prefix => ", pages ", :postfix => ". ").detex
+
+#  if field(p,"Pages") then
+#    r += ", pages " + field(p,"Pages").detex + ". "
+#  end
 
   if field(p,"Address") then
     r += field(p,"Address").detex + ", "
