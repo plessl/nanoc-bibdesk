@@ -20,7 +20,7 @@ def field(p,field_name)
 end
 
 
-def text_for_field(fieldname, p, params)
+def text_for_field(fieldname, p, params={})
   if field(p,fieldname) then
     return (params[:prefix] || "") + field(p,fieldname) + (params[:postfix] || "")
   else
@@ -49,7 +49,21 @@ def render_inproceedings(p)
   r += text_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ")
-  
+  return r
+end
+
+def render_article(p)
+  r = ""
+  r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  r += p.title.detex.titlecase + ". "
+
+  r += text_for_field("Journal", p, :postfix => ", ").detex
+  r += text_for_field("Volume", p)
+  r += text_for_field("Number", p, :prefix => "(", :postfix => "):").detex
+  r += text_for_field("Pages", p, :postfix => ", ").detex
+  r += text_for_field("Month", p, :postfix => " ").detex
+  r += text_for_field("Year", p, :postfix => ". ").detex
+  r += text_for_field("Note", p, :postfix => ". ")
   return r
 end
 

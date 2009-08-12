@@ -15,7 +15,17 @@ bd = OSA.app('BibDesk')
 pubs = bd.documents[0].publications
 p = pubs.find { |p| p.cite_key == key }
 
-puts render_inproceedings(p)
+pubtype = p.type2
+puts "publication is of type #{pubtype}"
+
+case pubtype
+when "article"
+  puts render_article(p)
+when "inproceedings"
+  puts render_inproceedings(p)
+else
+  raise "not implemented"
+end
 
 
 #puts p.bibtex_string

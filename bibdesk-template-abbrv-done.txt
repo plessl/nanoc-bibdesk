@@ -1,0 +1,8 @@
+<?$pubType=inproceedings?>
+	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. In <$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editors, </$editors?><$fields.Booktitle.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Pages.stringByPrependingCommaAndSpaceIfNotEmpty/><$fields.Address?>, <$fields.Address/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/>. <$fields.Organization/>, <$fields.Publisher/><?$fields.Address?>, <$fields.Organization/>, <$fields.Publisher/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Address?><$fields.Note.stringByPrependingFullStopAndSpace/>.
+
+<$pubType=article?>
+
+<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Journal/>, <$fields.Volume/><$fields.Number.parenthesizedStringIfNotEmpty/><$fields.Pages?><$fields.Volume?>:<?$fields.Volume?><$fields.Number?>:<?$fields.Number?>page </$fields.Number?></$fields.Volume?><$fields.Pages/>, <?$fields.Pages?><$fields.Volume?>, <?$fields.Volume?><$fields.Number?>, </$fields.Number?></$fields.Pages?><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
+
+
