@@ -18,8 +18,6 @@
 <?$pubType=manual?>
 	<$authors?><$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. </$authors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Organization.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Address.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Edition?><$fields.Edition.titleCapitalizedString.stringByRemovingTeX/> edition, </$fields.Edition?><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
-<?$pubType=mastersthesis?>
-	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Type?><$fields.Type.titleCapitalizedString.stringByRemovingTeX/><?$fields.Type?>Master's thesis</$fields.Type?>, <$fields.School/><$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
 <?$pubType=misc?>
 	<$authors?><$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. </$authors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Howpublished.stringByPrependingFullStopAndSpaceIfNotEmpty/>. <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpaceIfNotEmpty/>.
@@ -28,8 +26,7 @@
 <?$pubType=proceedings?>
 	<$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editor. <?$editors?><$fields.Organization?><$fields.Organization/>. </$fields.Organization?></$editors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Address?>, <$fields.Address/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/>. <$fields.Organization/>, <$fields.Publisher/><?$fields.Address?>. <$fields.Organization.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Publisher.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Address?><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
-<?$pubType=techreport?>
-	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Type?><$fields.Type.titleCapitalizedString/><?$fields.Type?>Technical report</$fields.Type?><$fields.Number.stringByPrependingSpaceIfNotEmpty/>, <$fields.Institution/><$fields.Address?>, <$fields.Address/></$fields.Address?>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
+
 <?$pubType=unpublished?>
 	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Note/><$fields.Year?>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Year?>.
 

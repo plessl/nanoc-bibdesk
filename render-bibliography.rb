@@ -112,12 +112,60 @@ def render_phdthesis(p)
   r += p.title.detex.titlecase + ". "
 
   if field(p,"Type") then
-    r += text_for_field("Type", p, :postfix => ", ").titlecase.detex
+    r += text_for_field("Type", p).titlecase.detex + ", "
   else
     r += "PhD thesis, "
   end
 
   r += text_for_field("School", p, :postfix => ", ").detex
+  r += text_for_field("Address", p, :postfix => ", ").detex
+  r += text_for_field("Month", p, :postfix => " ").detex
+  r += text_for_field("Year", p, :postfix => ". ").detex
+  r += text_for_field("Note", p, :postfix => ". ").detex
+  return r
+
+end
+
+# faithful port from BibDesk template
+def render_mastersthesis(p)
+  r = ""
+  if p.authors then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
+
+  r += p.title.detex.titlecase + ". "
+
+  if field(p,"Type") then
+    r += text_for_field("Type", p).titlecase.detex + ", "
+  else
+    r += "Master's thesis, "
+  end
+
+  r += text_for_field("School", p, :postfix => ", ").detex
+  r += text_for_field("Address", p, :postfix => ", ").detex
+  r += text_for_field("Month", p, :postfix => " ").detex
+  r += text_for_field("Year", p, :postfix => ". ").detex
+  r += text_for_field("Note", p, :postfix => ". ").detex
+  return r
+
+end
+
+# faithful port from BibDesk template
+def render_techreport(p)
+  r = ""
+  if p.authors then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
+
+  r += p.title.detex.titlecase + ". "
+
+  if field(p,"Type") then
+    r += text_for_field("Type", p).titlecase.detex
+  else
+    r += "Technical Report"
+  end
+  r += text_for_field("Number", p, :prefix => " ", :postfix => ", ").detex
+  r += text_for_field("Institution", p, :postfix => ", ").detex
   r += text_for_field("Address", p, :postfix => ", ").detex
   r += text_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex

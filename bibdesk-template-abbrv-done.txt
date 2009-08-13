@@ -5,8 +5,15 @@
 <?$pubType=inproceedings?>
 	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. In <$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editors, </$editors?><$fields.Booktitle.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Pages.stringByPrependingCommaAndSpaceIfNotEmpty/><$fields.Address?>, <$fields.Address/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/>. <$fields.Organization/>, <$fields.Publisher/><?$fields.Address?>, <$fields.Organization/>, <$fields.Publisher/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Address?><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
+
+<?$pubType=mastersthesis?>
+  	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Type?><$fields.Type.titleCapitalizedString.stringByRemovingTeX/><?$fields.Type?>Master's thesis</$fields.Type?>, <$fields.School/><$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
+
 <?$pubType=phdthesis?>
   	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Type?><$fields.Type.titleCapitalizedString.stringByRemovingTeX/><?$fields.Type?>PhD thesis</$fields.Type?>, <$fields.School/><$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
+
+<?$pubType=techreport?>
+    	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Type?><$fields.Type.titleCapitalizedString/><?$fields.Type?>Technical report</$fields.Type?><$fields.Number.stringByPrependingSpaceIfNotEmpty/>, <$fields.Institution/><$fields.Address?>, <$fields.Address/></$fields.Address?>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
 
 <$pubType=article?>

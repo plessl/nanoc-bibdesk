@@ -25,8 +25,12 @@ when "book"
   puts render_book(p)
 when "inproceedings"
   puts render_inproceedings(p)
+when "mastersthesis"
+  puts render_mastersthesis(p)
 when "phdthesis"
   puts render_phdthesis(p)
+when "techreport"
+  puts render_techreport(p)
 else
   raise "not implemented"
 end
