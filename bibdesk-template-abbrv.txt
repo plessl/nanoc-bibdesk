@@ -2,8 +2,6 @@
 [<$itemIndex/>]
 
 
-<?$pubType=book?>
-	<$authors?><$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/><?$authors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editor</$authors?>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>. Number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series?>. <$fields.Series/></$fields.Series?></$fields.Number?></$fields.Volume?>. <$fields.Publisher/><$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>, <$fields.Edition?><$fields.Edition.titleCapitalizedString.stringByRemovingTeX/> edition, </$fields.Edition?><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
 <?$pubType=booklet?>
 	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Howpublished.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Address.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
@@ -26,8 +24,6 @@
 <?$pubType=misc?>
 	<$authors?><$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. </$authors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Howpublished.stringByPrependingFullStopAndSpaceIfNotEmpty/>. <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpaceIfNotEmpty/>.
 
-<?$pubType=phdthesis?>
-	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Type?><$fields.Type.titleCapitalizedString.stringByRemovingTeX/><?$fields.Type?>PhD thesis</$fields.Type?>, <$fields.School/><$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
 <?$pubType=proceedings?>
 	<$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editor. <?$editors?><$fields.Organization?><$fields.Organization/>. </$fields.Organization?></$editors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Address?>, <$fields.Address/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/>. <$fields.Organization/>, <$fields.Publisher/><?$fields.Address?>. <$fields.Organization.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Publisher.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Address?><$fields.Note.stringByPrependingFullStopAndSpace/>.

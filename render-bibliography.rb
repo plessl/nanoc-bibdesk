@@ -68,3 +68,61 @@ def render_article(p)
 end
 
 
+# faithful port from BibDesk template
+def render_book(p)
+  r = ""
+  if p.authors then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+    if p.editors.size > 0 then
+      r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editors, "
+    end
+  end
+
+  r += p.title.detex.titlecase
+
+  if field(p,"Volume") then
+    r += text_for_field("Volume", p, :prefix => ", volume ")
+    r += text_for_field("Series", p, :prefix => " of ")
+  elsif field(p,"Number") then
+      r += text_for_field("Number", p, :prefix => ". Number ")
+      r += text_for_field("Series", p, :prefix => " in ")
+  elsif field(p,"Series") then
+    r += text_for_field("Series", p, :prefix => ". ")
+  end
+  r += ". "
+
+  r += text_for_field("Publisher", p, :postfix => ", ").detex
+  r += text_for_field("Address", p, :postfix => ", ").detex
+  r += text_for_field("Edition", p, :postfix => " edition, ").titlecase.detex
+
+  r += text_for_field("Month", p, :postfix => " ").detex
+  r += text_for_field("Year", p, :postfix => ". ").detex
+  r += text_for_field("Note", p, :postfix => ". ")
+  return r
+
+end
+
+# faithful port from BibDesk template
+def render_phdthesis(p)
+  r = ""
+  if p.authors then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
+
+  r += p.title.detex.titlecase + ". "
+
+  if field(p,"Type") then
+    r += text_for_field("Type", p, :postfix => ", ").titlecase.detex
+  else
+    r += "PhD thesis, "
+  end
+
+  r += text_for_field("School", p, :postfix => ", ").detex
+  r += text_for_field("Address", p, :postfix => ", ").detex
+  r += text_for_field("Month", p, :postfix => " ").detex
+  r += text_for_field("Year", p, :postfix => ". ").detex
+  r += text_for_field("Note", p, :postfix => ". ").detex
+  return r
+
+end
+

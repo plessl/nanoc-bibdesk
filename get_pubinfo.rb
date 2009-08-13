@@ -21,8 +21,12 @@ puts "publication is of type #{pubtype}"
 case pubtype
 when "article"
   puts render_article(p)
+when "book"
+  puts render_book(p)
 when "inproceedings"
   puts render_inproceedings(p)
+when "phdthesis"
+  puts render_phdthesis(p)
 else
   raise "not implemented"
 end
