@@ -25,6 +25,8 @@ when "book"
   puts render_book(p)
 when "inproceedings"
   puts render_inproceedings(p)
+when "manual"
+  puts render_manual(p)
 when "mastersthesis"
   puts render_mastersthesis(p)
 when "phdthesis"
