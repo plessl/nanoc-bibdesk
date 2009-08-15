@@ -30,6 +30,7 @@ def text_for_field(fieldname, p, params={})
   end
 end
 
+# faithful port from BibDesk template
 def render_inproceedings(p)
   r = ""
   r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
@@ -40,17 +41,47 @@ def render_inproceedings(p)
     r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editors, "
   end
 
-  r += text_for_field("Booktitle", p, :postfix => ", ").detex
-  r += text_for_field("Volume", p, :prefix => "volume ", :postfix => " ")
-  r += text_for_field("Number", p, :prefix => "number ", :postfix => " ")
-  r += text_for_field("Series", p, :prefix => "of ", :postfix => ", ")
-  r += text_for_field("Pages", p, :prefix => "pages ", :postfix => ". ").detex
-  r += text_for_field("Address", p, :postfix => ", ").detex
-  r += text_for_field("Organization", p, :postfix => ", ").detex
-  r += text_for_field("Publisher", p, :postfix => ". ").detex
-  r += text_for_field("Month", p, :postfix => " ").detex
-  r += text_for_field("Year", p, :postfix => ". ").detex
-  r += text_for_field("Note", p, :postfix => ". ")
+  r += text_for_field("Booktitle", p, :postfix => "").detex
+
+  # TODO simplify this complex nested if structures that result from the conversion
+  # from BibDesks abbrv template
+  if field(p,"Volume") then # <$fields.Volume?>
+    r += text_for_field("Volume", p, :prefix => ", volume ", :postfix => "") # <$fields.Volume/>
+    if field(p,"Series") then # <$fields.Series?>
+      r += text_for_field("Series", p, :prefix => " of ", :postfix => "") # <$fields.Series/>
+    end # </$fields.Series?>
+  else #<?$fields.Volume?>
+    if field(p,"Number") then # <$fields.Number?>
+      r += text_for_field("Number", p, :prefix => " , number ", :postfix => "") #<$fields.Number/>
+      if field(p,"Series") then # <$fields.Series?>
+         r += text_for_field("Series", p, :prefix => " in ", :postfix => "") # <$fields.Series/>
+      end #</$fields.Series?>
+    else #<?$fields.Number?>
+        r += text_for_field("Series", p, :prefix => ", ", :postfix => "") # <$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/>
+    end # </$fields.Number?>
+  end # </$fields.Volume?>
+
+  if field(p,"Pages") then
+    r += text_for_field("Pages", p, :prefix => ", pages ", :postfix => ". ").detex
+  else
+    r += ". "
+  end
+
+  if field(p,"Address") then # <$fields.Address?>
+    r += text_for_field("Address", p, :prefix => " , ", :postfix => " ") #  ,  <$fields.Address/>
+    r += text_for_field("Month", p, :prefix => " , ", :postfix => " ") #  , <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
+    r += text_for_field("Year", p, :postfix => ". ").detex # <$fields.Year/>. 
+    r += text_for_field("Organization", p, :postfix => ", ").detex # <$fields.Organization/> , 
+    r += text_for_field("Publisher", p, :postfix => " ").detex # <$fields.Publisher/>
+  else # <?$fields.Address?>
+    r += text_for_field("Organization", p, :prefix => ", ", :postfix => ", ").detex # <$fields.Organization/> ,
+    r += text_for_field("Publisher", p, :postfix => ", ").detex # <$fields.Publisher/> , 
+    r += text_for_field("Month", p, :postfix => " ") # <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
+    r += text_for_field("Year", p).detex # <$fields.Year/>. 
+  end # </$fields.Address?>
+
+  r += text_for_field("Note", p, :prefix => ", ").detex #  <$fields.Note.stringByPrependingFullStopAndSpace/>.
+  r += "."
   return r
 end
 
