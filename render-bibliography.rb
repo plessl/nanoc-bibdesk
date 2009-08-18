@@ -3,7 +3,7 @@ require 'text-helpers'
 
 # TODO
 # * print "page" instead of "pages" for publications that have only a single page
-# * adapt inproceedings style to faithfully reproducing the abbrv style from BibTeX
+# * implement detex method that converts \url macros to links?
 
 
 def booktitle(p)
@@ -129,7 +129,7 @@ end
 # faithful port from BibDesk template
 def render_book(p)
   r = ""
-  if p.authors =~/\w+/ then
+  if p.authors.size > 0 then
     r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
     if p.editors.size > 0 then
       r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editors, "
@@ -163,7 +163,7 @@ end
 # faithful port from BibDesk template
 def render_phdthesis(p)
   r = ""
-  if p.authors =~/\w+/ then
+  if p.authors.size > 0 then
     r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
   end
 
@@ -187,7 +187,7 @@ end
 # faithful port from BibDesk template
 def render_mastersthesis(p)
   r = ""
-  if p.authors =~/\w+/ then
+  if p.authors.size > 0 then
     r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
   end
 
@@ -211,7 +211,7 @@ end
 # faithful port from BibDesk template
 def render_techreport(p)
   r = ""
-  if p.authors =~/\w+/ then
+  if p.authors.size > 0 then
     r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
   end
 
@@ -235,7 +235,7 @@ end
 # faithful port from BibDesk template
 def render_manual(p)
   r = ""
-  if p.authors =~ /\w+/ then
+  if p.authors.size > 0 then
     r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
   end
 
@@ -251,5 +251,42 @@ def render_manual(p)
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ").detex
   return r
-
 end
+
+# faithful port from BibDesk template
+def render_misc(p)
+  r = ""
+  if p.authors.size > 0 then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
+
+  r += p.title.detex.titlecase + ". "
+  r += text_for_field("Howpublished", p).detex
+  if field(p,"Year")
+    r += ", "
+    r += text_for_field("Month", p, :postfix => " ").detex
+    r += text_for_field("Year", p, :postfix => ". ").detex
+  end
+  r += text_for_field("Note", p, :prefix => ". ").detex
+  return r
+end
+
+# faithful port from BibDesk template
+def render_unpublished(p)
+  r = ""
+  if p.authors.size > 0 then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
+
+  r += p.title.detex.titlecase + ". "
+  r += text_for_field("Note", p).detex + "."
+
+  if field(p,"Year") then
+    r += text_for_field("Month", p, :prefix => " ").detex
+    r += text_for_field("Year", p, :prefix => " ").detex
+  end
+  r += "."
+  return r
+end
+
+

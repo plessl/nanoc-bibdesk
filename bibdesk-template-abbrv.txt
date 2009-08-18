@@ -17,8 +17,6 @@
 
 
 
-<?$pubType=misc?>
-	<$authors?><$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. </$authors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Howpublished.stringByPrependingFullStopAndSpaceIfNotEmpty/>. <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpaceIfNotEmpty/>.
 
 
 <?$pubType=proceedings?>
@@ -28,8 +26,6 @@
 <?$pubType=unpublished?>
 	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Note/><$fields.Year?>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Year?>.
 
-<?$pubType?>
-	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Journal/>, <$fields.Volume/><$field.Number.parenthesizedStringIfNotEmpty/><$fields.Pages?>:<$fields.Pages/></$fields.Pages?>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
 </$pubType?>
 

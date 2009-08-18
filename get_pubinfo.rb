@@ -29,10 +29,14 @@ when "manual"
   puts render_manual(p)
 when "mastersthesis"
   puts render_mastersthesis(p)
+when "misc"
+  puts render_misc(p)
 when "phdthesis"
   puts render_phdthesis(p)
 when "techreport"
   puts render_techreport(p)
+when "unpublished"
+  puts render_unpublished(p)
 else
   raise "not implemented"
 end
