@@ -15,6 +15,7 @@ end
 class String
   
   def detex
+    self.gsub!(/~/," ")      # non-breakable space
     self.gsub!(/\{/,"")      # remove all {
     self.gsub!(/\}/,"")      # remove all }
     self.gsub!(/---/,"—")    # em dash --- \u2014

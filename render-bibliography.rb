@@ -31,6 +31,68 @@ def text_for_field(fieldname, p, params={})
 end
 
 # faithful port from BibDesk template
+def render_inbook(p)
+  r = ""
+  if p.authors.size > 0 then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and
+  else
+    r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editor"
+  end
+  r += ". "
+
+  r += p.title.detex.titlecase
+
+  if field(p,"Volume") then # <$fields.Volume?>
+    r += text_for_field("Volume", p, :prefix => ", volume ") #, volume <$fields.Volume/>
+    if field(p,"Series") then # <$fields.Series?>
+      r += text_for_field("Series", p, :prefix => " of ", :postfix => "") # <$fields.Series/>
+    end # </$fields.Series?>
+  end # </$fields.Volume?>
+
+  if field(p,"Chapter") then # <$fields.Chapter?>, 
+    r += ", "
+    if field(p,"Type") then # <$fields.Type?>
+      r += text_for_field("Type", p, :postfix => " ") # <$fields.Type/>
+    else
+      r += "chapter" # <?$fields.Type?>chapter
+    end # </$fields.Type?>
+     r += text_for_field("Chapter", p) # <$fields.Chapter/>
+     # <$fields.Pages.stringByPrependingCommaAndSpaceIfNotEmpty/>
+     if field(p,"Pages") then
+       r += text_for_field("Pages", p, :prefix => ", pages ", :postfix => ". ").detex
+     end
+  else # <?$fields.Chapter?>
+    # <$fields.Pages?>, page <$fields.Pages/>
+    if field(p,"Pages") then
+      r += text_for_field("Pages", p, :prefix => ", pages ", :postfix => ". ").detex
+    end # </$fields.Pages?>
+  end # </$fields.Chapter?>
+
+  if field(p,"Volume") then #<$fields.Volume?>
+    # empty
+  else # <?$fields.Volume?>
+    if field(p,"Number") then # <$fields.Number?>. Number
+      r += text_for_field("Number", p, :prefix => ". Number ", :postfix => "") #<$fields.Number/>
+      if field(p,"Series") then # <$fields.Series?>
+         r += text_for_field("Series", p, :prefix => " in ", :postfix => "") # <$fields.Series/>
+      end #</$fields.Series?>
+    else # <?$fields.Number?>
+      # <$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/>
+      r += text_for_field("Series", p, :prefix => ", ")
+    end # </$fields.Number?>
+    r += ". "
+  end # </$fields.Volume?>.
+
+  r += text_for_field("Publisher", p) # <$fields.Publisher/>
+  r += text_for_field("Address", p, :prefix => ", ") #  <$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>,
+  r += text_for_field("Edition", p, :prefix => ", ", :postfix => " edition")
+  r += text_for_field("Month", p, :prefix => ", ") # <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
+  r += text_for_field("Year", p, :prefix => " ", :postfix => ".") # <$fields.Year/>. 
+  r += text_for_field("Note", p, :prefix => " ", :postfix => ". ").detex #  <$fields.Note.stringByPrependingFullStopAndSpace/>.
+  return r
+end
+
+# faithful port from BibDesk template
 def render_inproceedings(p)
   r = ""
   r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
