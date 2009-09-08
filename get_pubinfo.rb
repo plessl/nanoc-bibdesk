@@ -23,6 +23,8 @@ when "article"
   puts render_article(p)
 when "book"
   puts render_book(p)
+when "booklet"
+  puts render_booklet(p)
 when "inbook"
   puts render_inbook(p)
 when "inproceedings"

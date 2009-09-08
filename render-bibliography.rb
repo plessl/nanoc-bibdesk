@@ -31,6 +31,21 @@ def text_for_field(fieldname, p, params={})
 end
 
 # faithful port from BibDesk template
+def render_booklet(p)
+  r = ""
+  if p.authors.size > 0 then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
+  r += p.title.detex.titlecase + ". "
+  r += text_for_field("Howpublished", p, :postfix => ", ")
+  r += text_for_field("Address", p, :postfix => ", ")
+  r += text_for_field("Month", p, :postfix => " ")
+  r += text_for_field("Year", p, :prefix => " ", :postfix => ". ")
+  r += text_for_field("Note", p, :prefix => " ", :postfix => ". ").detex
+  return r
+end
+
+# faithful port from BibDesk template
 def render_inbook(p)
   r = ""
   if p.authors.size > 0 then
