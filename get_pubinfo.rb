@@ -35,6 +35,8 @@ when "misc"
   puts render_misc(p)
 when "phdthesis"
   puts render_phdthesis(p)
+when "proceedings"
+  puts render_proceedings(p)
 when "techreport"
   puts render_techreport(p)
 when "unpublished"

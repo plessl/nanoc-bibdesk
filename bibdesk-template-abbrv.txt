@@ -16,8 +16,6 @@
 
 
 
-<?$pubType=proceedings?>
-	<$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editor. <?$editors?><$fields.Organization?><$fields.Organization/>. </$fields.Organization?></$editors?><$fields.Title.titleCapitalizedString.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Address?>, <$fields.Address/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/>. <$fields.Organization/>, <$fields.Publisher/><?$fields.Address?>. <$fields.Organization.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Publisher.stringByAppendingCommaAndSpaceIfNotEmpty/><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Address?><$fields.Note.stringByPrependingFullStopAndSpace/>.
 
 
 <?$pubType=unpublished?>

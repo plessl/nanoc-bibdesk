@@ -147,6 +147,46 @@ def render_inproceedings(p)
   return r
 end
 
+# faithful port from BibDesk template
+def render_proceedings(p)
+  r = ""
+  if p.editors.size > 0 then
+    r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editor. "
+  else
+    r += text_for_field("Organization", p, :postfix => ". ")
+  end
+
+  r += p.title.detex.titlecase
+
+  if field(p,"Volume") then
+    r += text_for_field("Volume", p, :prefix => ", volume ")
+    r += text_for_field("Series", p, :prefix => " of ")
+  else
+    if field(p,"Number") then
+      r += text_for_field("Number", p, :prefix => ", number ")
+      r += text_for_field("Series", p, :prefix => " in ")
+    else
+      r += text_for_field("Series", p, :prefix => ", ")
+    end
+  end
+
+  if field(p,"Address") then
+    r += text_for_field("Address", p, :prefix => ", ", :postfix => ", ")
+    r += text_for_field("Month", p, :postfix => " ")
+    r += text_for_field("Year", p, :postfix => ". ")
+    r += text_for_field("Organization", p, :postfix => ", ")
+    r += text_for_field("Publisher", p)
+  else
+    r += ". "
+    r += text_for_field("Organization", p, :postfix => ", ")
+    r += text_for_field("Publisher", p)
+    r += text_for_field("Month", p, :postfix => " ")
+    r += text_for_field("Year", p, :postfix => ". ")
+  end
+  
+  r += text_for_field("Note", p, :prefix => ". ", :postfix => ".").detex #  
+  return r
+end
 
 # faithful port from BibDesk template
 def render_article(p)
