@@ -30,6 +30,45 @@ def text_for_field(fieldname, p, params={})
   end
 end
 
+def month_for_field(fieldname, p, params={})
+  if field(p,fieldname) then
+    return (params[:prefix] || "") + abbrev_month_name(field(p,fieldname)) + (params[:postfix] || "")
+  else
+    return ""
+  end
+end
+
+
+def text_for_string(str, params={})
+  if str then
+    return (params[:prefix] || "") + str + (params[:postfix] || "")
+  else
+    return ""
+  end
+end
+
+def abbrev_month_name(month)
+  return nil if month.nil?
+
+  abbrev_month = case month
+    when "January|Januar" then "Jan."
+    when "February|Februar" then "Feb."
+    when "March|März" then "Mar."
+    when "April" then "Apr."
+    when "May|Mai" then "Mai"
+    when "June|Juni" then "Jun."
+    when "July|Juli" then "Jul."
+    when "August" then "Aug."
+    when "September" then "Sep."
+    when "October|Oktober" then "Oct."
+    when "November" then "Nov."
+    else "Dec."
+  end
+  return abbrev_month
+end
+
+
+
 # faithful port from BibDesk template
 def render_booklet(p)
   r = ""
@@ -39,7 +78,7 @@ def render_booklet(p)
   r += p.title.detex.titlecase + ". "
   r += text_for_field("Howpublished", p, :postfix => ", ")
   r += text_for_field("Address", p, :postfix => ", ")
-  r += text_for_field("Month", p, :postfix => " ")
+  r += month_for_field("Month", p, :postfix => " ")
   r += text_for_field("Year", p, :prefix => " ", :postfix => ". ")
   r += text_for_field("Note", p, :prefix => " ", :postfix => ". ").detex
   return r
@@ -101,7 +140,7 @@ def render_inbook(p)
   r += text_for_field("Publisher", p) # <$fields.Publisher/>
   r += text_for_field("Address", p, :prefix => ", ") #  <$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>,
   r += text_for_field("Edition", p, :prefix => ", ", :postfix => " edition")
-  r += text_for_field("Month", p, :prefix => ", ") # <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
+  r += month_for_field("Month", p, :prefix => ", ") # <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
   r += text_for_field("Year", p, :prefix => " ", :postfix => ".") # <$fields.Year/>. 
   r += text_for_field("Note", p, :prefix => " ", :postfix => ". ").detex #  <$fields.Note.stringByPrependingFullStopAndSpace/>.
   return r
@@ -146,14 +185,14 @@ def render_inproceedings(p)
 
   if field(p,"Address") then # <$fields.Address?>
     r += text_for_field("Address", p, :prefix => " , ", :postfix => " ") #  ,  <$fields.Address/>
-    r += text_for_field("Month", p, :prefix => " , ", :postfix => " ") #  , <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
+    r += month_for_field("Month", p, :prefix => " , ", :postfix => " ") #  , <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
     r += text_for_field("Year", p, :postfix => ". ").detex # <$fields.Year/>. 
     r += text_for_field("Organization", p, :postfix => ", ").detex # <$fields.Organization/> , 
     r += text_for_field("Publisher", p, :postfix => " ").detex # <$fields.Publisher/>
   else # <?$fields.Address?>
     r += text_for_field("Organization", p, :prefix => ", ", :postfix => ", ").detex # <$fields.Organization/> ,
     r += text_for_field("Publisher", p, :postfix => ", ").detex # <$fields.Publisher/> , 
-    r += text_for_field("Month", p, :postfix => " ") # <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
+    r += month_for_field("Month", p, :postfix => " ") # <$fields.Month.stringByAppendingSpaceIfNotEmpty/>
     r += text_for_field("Year", p).detex # <$fields.Year/>. 
   end # </$fields.Address?>
 
@@ -187,7 +226,7 @@ def render_proceedings(p)
 
   if field(p,"Address") then
     r += text_for_field("Address", p, :prefix => ", ", :postfix => ", ")
-    r += text_for_field("Month", p, :postfix => " ")
+    r += month_for_field("Month", p, :postfix => " ")
     r += text_for_field("Year", p, :postfix => ". ")
     r += text_for_field("Organization", p, :postfix => ", ")
     r += text_for_field("Publisher", p)
@@ -195,7 +234,7 @@ def render_proceedings(p)
     r += ". "
     r += text_for_field("Organization", p, :postfix => ", ")
     r += text_for_field("Publisher", p)
-    r += text_for_field("Month", p, :postfix => " ")
+    r += month_for_field("Month", p, :postfix => " ")
     r += text_for_field("Year", p, :postfix => ". ")
   end
   
@@ -237,7 +276,7 @@ def render_article(p)
     end
   end #</$fields.Pages?>
 
-  r += text_for_field("Month", p, :postfix => " ").detex
+  r += month_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ")
   return r
@@ -270,7 +309,7 @@ def render_book(p)
   r += text_for_field("Address", p, :postfix => ", ").detex
   r += text_for_field("Edition", p, :postfix => " edition, ").titlecase.detex
 
-  r += text_for_field("Month", p, :postfix => " ").detex
+  r += month_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ")
   return r
@@ -294,7 +333,7 @@ def render_phdthesis(p)
 
   r += text_for_field("School", p, :postfix => ", ").detex
   r += text_for_field("Address", p, :postfix => ", ").detex
-  r += text_for_field("Month", p, :postfix => " ").detex
+  r += month_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ").detex
   return r
@@ -318,7 +357,7 @@ def render_mastersthesis(p)
 
   r += text_for_field("School", p, :postfix => ", ").detex
   r += text_for_field("Address", p, :postfix => ", ").detex
-  r += text_for_field("Month", p, :postfix => " ").detex
+  r += month_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ").detex
   return r
@@ -342,7 +381,7 @@ def render_techreport(p)
   r += text_for_field("Number", p, :prefix => " ", :postfix => ", ").detex
   r += text_for_field("Institution", p, :postfix => ", ").detex
   r += text_for_field("Address", p, :postfix => ", ").detex
-  r += text_for_field("Month", p, :postfix => " ").detex
+  r += month_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ").detex
   return r
@@ -364,7 +403,7 @@ def render_manual(p)
     r += text_for_field("Edition", p).titlecase.detex + " edition, "
   end
 
-  r += text_for_field("Month", p, :postfix => " ").detex
+  r += month_for_field("Month", p, :postfix => " ").detex
   r += text_for_field("Year", p, :postfix => ". ").detex
   r += text_for_field("Note", p, :postfix => ". ").detex
   return r
@@ -381,7 +420,7 @@ def render_misc(p)
   r += text_for_field("Howpublished", p).detex
   if field(p,"Year")
     r += ", "
-    r += text_for_field("Month", p, :postfix => " ").detex
+    r += month_for_field("Month", p, :postfix => " ").detex
     r += text_for_field("Year", p, :postfix => ". ").detex
   end
   r += text_for_field("Note", p, :prefix => ". ").detex
@@ -399,11 +438,60 @@ def render_unpublished(p)
   r += text_for_field("Note", p).detex + "."
 
   if field(p,"Year") then
-    r += text_for_field("Month", p, :prefix => " ").detex
+    r += month_for_field("Month", p, :prefix => " ").detex
     r += text_for_field("Year", p, :prefix => " ").detex
   end
   r += "."
   return r
 end
 
+# faithful port from BibDesk template
+def render_conference(p)
+  r = ""
+  if p.authors.size > 0 then
+    r += p.authors.map {|a| a.abbreviated_name}.joined_by_comma_and_and + ". "
+  end
 
+  r += p.title.detex.titlecase + ". "
+  
+  r += "In "
+  if p.editors.size > 0 then
+    r += p.editors.map {|e| e.abbreviated_name}.joined_by_comma_and_and + ", editors, "
+  end
+
+  r += p.booktitle.detex.titlecase + ". "
+  r += text_for_field("Booktitle", p, :postfix => "").detex.titlecase
+
+
+  if field(p,"Volume") then
+    r += text_for_field("Volume", p, :prefix => ", volume ")
+    r += text_for_field("Series", p, :prefix => " of ")
+  elsif field(p,"Number") then
+      r += text_for_field("Number", p, :prefix => ". Number ")
+      r += text_for_field("Series", p, :prefix => " in ")
+  elsif field(p,"Series") then
+    r += text_for_field("Series", p, :prefix => ". ")
+  end
+  r += ". "
+
+  if field(p,"Pages") then
+    r += text_for_field("Pages", p, :prefix => ", pages ", :postfix => ". ").detex
+  end
+
+  if field(p,"Address") then
+    r += text_for_field("Address", p, :prefix => ", ")
+    r += month_for_field("Month", p, :prefix => ", ", :postfix => " ")
+    r += text_for_field("Year", p)
+    r += text_for_field("Organization", p, :prefix => ". ")
+    r += text_for_field("Publisher", p, :prefix => ", ")
+  else
+    r += text_for_field("Organization", p, :prefix => ", ")
+    r += text_for_field("Publisher", p, :prefix => ", ")
+    r += month_for_field("Month", p, :prefix => ", ", :postfix => " ")
+    r += text_for_field("Year", p)
+  end
+
+  r += text_for_field("Note", p, :postfix => ". ")
+  return r
+
+end

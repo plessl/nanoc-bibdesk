@@ -2,19 +2,8 @@
 [<$itemIndex/>]
 
 
-
-
-<?$pubType=conference?>
-	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. In <$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editors, </$editors?><$fields.Booktitle.titleCapitalizedString.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields.Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$fields.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Pages.stringByPrependingCommaAndSpaceIfNotEmpty/><$fields.Address?>, <$fields.Address/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/>. <$fields.Organization/>, <$fields.Publisher/><?$fields.Address?>, <$fields.Organization/>, <$fields.Publisher/>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Address?><$fields.Note.stringByPrependingFullStopAndSpace/>.
-
 <?$pubType=incollection?>
 	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. In <$editors?><$editors.abbreviatedName.@componentsJoinedByCommaAndAnd/>, editors, </$editors?><$fields.Booktitle.titleCapitalizedString.stringByRemovingTeX/><$fields.Volume?>, volume <$fields.Volume/><$fields.Series?> of <$fields.Series/></$fields. Series?><?$fields.Volume?><$fields.Number?>, number <$fields.Number/><$fields.Series?> in <$field.Series/></$fields.Series?><?$fields.Number?><$fields.Series.stringByPrependingCommaAndSpaceIfNotEmpty/></$fields.Number?></$fields.Volume?><$fields.Chapter?>, <$fields.Type?><$fields.Type/><?$fields.Type?>chapter</$fields.Type?><$fields.Chapter/><$fields.Pages.stringByPrependingCommaAndSpaceIfNotEmpty/><?$fields.Chapter?><$fields.Pages?>, page <$fields.Pages/></$fields.Pages?></$fields.Chapter?>. <$fields.Publisher/><$fields.Address.stringByPrependingCommaAndSpaceIfNotEmpty/>, <$fields.Edition?><$fields.Edition.titleCapitalizedString.stringByRemovingTeX/> edition, </$fields.Edition?><$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/><$fields.Note.stringByPrependingFullStopAndSpace/>.
-
-
-
-
-
-
 
 <?$pubType=unpublished?>
 	<$authors.abbreviatedName.@componentsJoinedByCommaAndAnd/>. <$fields.Title.titleCapitalizedString.stringByRemovingTeX/>. <$fields.Note/><$fields.Year?>, <$fields.Month.stringByAppendingSpaceIfNotEmpty/><$fields.Year/></$fields.Year?>.

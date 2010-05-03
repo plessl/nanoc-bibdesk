@@ -12,8 +12,7 @@ puts "looking for publication with key: #{key}"
 
 
 bd = OSA.app('BibDesk')
-pubs = bd.documents[0].publications
-p = pubs.find { |p| p.cite_key == key }
+p = bd.search(bd.documents[0],key)[0]
 
 pubtype = p.type2
 puts "publication is of type #{pubtype}"
@@ -25,6 +24,8 @@ when "book"
   puts render_book(p)
 when "booklet"
   puts render_booklet(p)
+when "conference"
+  puts render_conference(p)
 when "inbook"
   puts render_inbook(p)
 when "inproceedings"
