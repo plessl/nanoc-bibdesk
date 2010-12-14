@@ -1,0 +1,29 @@
+Input:
+
+<p>
+Rupeas is a domain-specific lanaguage for describing tests in wireless sensor networks which has been introduced by Woehrle and Plessl in <cite key="plessl09_ewsn" format="alpha"/>. In later work <cite key="plessl10_inss"/> the authors have refined their work.
+</p>
+
+<h2>References</h2>
+<bibliography src="plessl.bib"/>
+
+Output:
+
+<p>
+Rupeas is a domain-specific language for describing tests in wireless sensor networks which has been introduced by Woehrle and Plessl in <a href="#plessl09_ewsn">[1]</a>. In later work <a href="#plessl10_inss">[2]</a> the authors have refined their work.
+</p>
+
+<h2>References</h2>
+<ul>
+  <li id="plessl09_ewsn">[1] M. Woehrle, C. Plessl, and L. Thiele. Poster abstract: Rupeas – an event analysis language for wireless sensor network traces. In Adjunct Proc. of European Conf. on Wireless Sensor Networks (EWSN), pages 19–20, Feb. 2009.
+  </li>
+  <li id="plessl10_inss">[2] M. Woehrle, C. Plessl, and L. Thiele. Rupeas: Ruby powered event analysis DSL. In Proc. Int. Conf. Network Sensing Systems (INSS), pages 245–248. IEEE, June 2010.
+  </li>
+</ul>
+
+
+Implementation:
+
+- Look for bibliography tag which specifies the bibliography file to be used
+- Iterate over all cite tags and render citation to text (link to reference), remember referenced citations
+- Render bibliography containing all referenced citations
