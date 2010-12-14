@@ -1,13 +1,17 @@
+-------------------------------------------------------------------------------
 Input:
+-------------------------------------------------------------------------------
 
 <p>
-Rupeas is a domain-specific lanaguage for describing tests in wireless sensor networks which has been introduced by Woehrle and Plessl in <cite key="plessl09_ewsn" format="alpha"/>. In later work <cite key="plessl10_inss"/> the authors have refined their work.
+Rupeas is a domain-specific lanaguage for describing tests in wireless sensor networks which has been introduced by Woehrle and Plessl in <cite key="plessl09_ewsn" format="plain"/>. In later work <cite key="plessl10_inss"/> the authors have refined their work.
 </p>
 
 <h2>References</h2>
 <bibliography src="plessl.bib"/>
 
+-------------------------------------------------------------------------------
 Output:
+-------------------------------------------------------------------------------
 
 <p>
 Rupeas is a domain-specific language for describing tests in wireless sensor networks which has been introduced by Woehrle and Plessl in <a href="#plessl09_ewsn">[1]</a>. In later work <a href="#plessl10_inss">[2]</a> the authors have refined their work.
@@ -22,8 +26,10 @@ Rupeas is a domain-specific language for describing tests in wireless sensor net
 </ul>
 
 
+-------------------------------------------------------------------------------
 Implementation:
+-------------------------------------------------------------------------------
 
 - Look for bibliography tag which specifies the bibliography file to be used
-- Iterate over all cite tags and render citation to text (link to reference), remember referenced citations
+- Iterate over all cite tags and render citation to text (link to reference), generate citation text (eg. numeric), remember referenced citations
 - Render bibliography containing all referenced citations

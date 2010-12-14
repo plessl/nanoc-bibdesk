@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+Input:
+-------------------------------------------------------------------------------
+
+<h1>Publication List</h1>
+
+<bibliography src="plessl.bib"/>
+
+<h2>Journal Publications</h2>
+
+<ul>
+  <li><cite key="plessl05_jmicpro" format="plain" display="inline"/></li>
+  <li><cite key="plessl03_jsuper" format="plain" display="inline"/></li>
+  <li><cite key="plessl05_jpersubicomp" format="plain" display="inline"/></li>
+</ul>
+
+<h2>Refereed Conference Publications</h2>
+
+<ul>
+  <li><cite key="plessl10_reconfig_accepted" format="plain" display="inline"/></li>
+  <li><cite key="plessl10_warp" format="plain" display="inline"/></li>
+</ul>
+
+
+
+-------------------------------------------------------------------------------
+Output:
+-------------------------------------------------------------------------------
+
+<h1>Publication List</h1>
+
+<h2>Journal Publications</h2>
+
+<ul>
+  <li>R. Enzler, C. Plessl, and M. Platzner. System-level performance evaluation of reconfigurable processors. Microprocessors and Microsystems, 29(issues 2–3):63–73, Apr. 2005.
+  </li>
+  <li>C. Plessl and M. Platzner. Instance-specific accelerators for minimum covering. Journal of Supercomputing, 26(2):109–129, Sept. 2003.
+  </li>
+  <li>C. Plessl, R. Enzler, H. Walder, J. Beutel, M. Platzner, L. Thiele, and G. Tröster. The case for reconfigurable hardware in wearable computing. Personal and Ubiquitous Computing, 7(5):299–308, Oct. 2003.
+  </li>
+</ul>
+
+<h2>Refereed Conference Publications</h2>
+
+<ul>
+  <li>M. Grad and C. Plessl. Pruning the design space for just-in-time processor customization. In accepted for publication in: Proc. Int. Conf. on ReConFigurable Computing and FPGAs (ReConFig). IEEE Computer Society, Dec. 2010.
+  </li>
+  <li>T. Kenter, M. Platzner, C. Plessl, and M. Kauschke. Performance estimation for the exploration of CPU-accelerator architectures. In O. Hammami and S. Larrabee, editors, Proc. Workshop on Architectural Research Prototyping (WARP), June 2010.
+  </li>
+</ul>
+
+
+-------------------------------------------------------------------------------
+Implementation:
+-------------------------------------------------------------------------------
